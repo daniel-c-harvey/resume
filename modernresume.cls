@@ -100,15 +100,16 @@
         {\large\textbf{#1}} & #2 \\
         \textit{#3} & \textit{#4} \\
     \end{tabular*}
-    \vspace{1pt}
-    
+
     \IfValueT{#5}{
-        \textbf{Technologies:} #5
         \vspace{4pt}
+        \textbf{Technologies:} #5
     }
+    \vspace{4pt}
 }
 
 \newcommand{\product}[1]{
+    \vspace{4pt}
     \textbf{Product: #1}
     \begin{itemize}
 }
@@ -119,7 +120,7 @@
 
 \newcommand{\productend}{
     \end{itemize}
-    \vspace{1pt}
+    \vspace{8pt}
 }
 
 % Projects section
