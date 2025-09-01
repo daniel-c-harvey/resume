@@ -1,0 +1,87 @@
+# LaTeX generated files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+*.vrb
+*.pdf
+*.dvi
+*.ps
+
+# LaTeX temporary files
+*.backup
+*.tmp
+*.temp
+
+# Biber temporary files
+*.bib.bak
+*.bib.sav
+
+# Latexmk
+*.latexmk
+
+# Algorithm2e package
+*.alg
+*.lof
+
+# Listings package
+*.lol
+
+# Makeindex
+*.idx
+*.ilg
+*.ind
+
+# Nomencl
+*.nlo
+*.nls
+
+# Sagetex
+*.sagetex.sage
+*.sagetex.py
+*.sagetex.scmd
+
+# Sympy
+*.upa
+*.upb
+
+# TikZ & PGF
+*.auxlock
+*.figlist
+*.makefile
+*.xcp
+
+# Xindy
+*.xdy
+
+# WinEdt
+*.bak
+*.sav
+
+# Texpad
+.texpadtmp
+
+# Kile
+*.cmd
+
+# KBibTeX
+*~[0-9]*
+
+# Auto-generated tag files
+*.tag
+
+# Editor backup files
+*~
+*.swp
+*.swo
+\#*\#
+.#*
