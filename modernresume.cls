@@ -3,7 +3,7 @@
 \ProvidesClass{modernresume}[Modern Resume Class]
 
 % Base class
-\LoadClass[11pt,letterpaper]{article}
+\LoadClass[10pt,letterpaper]{article}
 
 % Required packages
 \RequirePackage[empty]{fullpage}
@@ -19,6 +19,7 @@
 \RequirePackage{lmodern}
 \RequirePackage{geometry}
 \RequirePackage{xparse}
+\RequirePackage{lastpage}
 
 % Page setup
 \geometry{
@@ -32,6 +33,7 @@
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
+\setlength{\footskip}{16pt}
 
 % Colors
 \definecolor{primary}{RGB}{0, 102, 204}
@@ -52,7 +54,6 @@
 \newcommand{\@phonenumber}{}
 \newcommand{\@emailaddress}{}
 \newcommand{\@githubhandle}{}
-\newcommand{\@birthdate}{}
 
 % Commands to set personal information
 \newcommand{\fullname}[1]{\renewcommand{\@fullname}{#1}}
@@ -65,19 +66,19 @@
 \newcommand{\makeheader}{
     \begin{center}
         {\Huge \bfseries \@fullname} \\ \vspace{4pt}
-        {\Large \@jobtitle} \\ \vspace{12pt}
+        {\Large \@jobtitle} \\ \vspace{8pt}
         \small 
         \raisebox{-0.1\height}\faPhone\ \@phonenumber ~ 
         \href{mailto:\@emailaddress}{\raisebox{-0.2\height}\faEnvelope\ \@emailaddress} ~ 
         \href{https://github.com/\@githubhandle}{\raisebox{-0.2\height}\faGithub\ \@githubhandle} ~
     \end{center}
-    \vspace{-8pt}
+    \vspace{-16pt}
 }
 
 % Skills section
 \newcommand{\skillsheader}[1]{
     \section{#1}
-    \begin{itemize}[leftmargin=0.15in, label={}]
+    \begin{itemize}[leftmargin=0in, label={}]
 }
 
 \newcommand{\skillsitem}[2]{
@@ -94,23 +95,29 @@
     \section{#1}
 }
 
-\newcommand{\role}[5]{
-    \vspace{8pt}
+\newcommand{\role}[6]{
+    \vspace{4pt}
     \begin{tabular*}{\textwidth}[t]{@{}l@{\extracolsep{\fill}}r@{}}
-        {\large\textbf{#1}} & #2 \\
-        \textit{#3} & \textit{#4} \\
+        {\large\textbf{#1}}\IfValueT{#2}{ \textit{\small[#2]}} & #3 \\
+        \textit{#4} & \textit{#5} \\
     \end{tabular*}
 
-    \IfValueT{#5}{
+    \IfValueT{#6}{
         \vspace{4pt}
-        \textbf{Technologies:} #5
+        \textbf{Technologies:} #6
     }
     \vspace{4pt}
 }
 
-\newcommand{\product}[1]{
+\newcommand{\product}[3]{
     \vspace{4pt}
-    \textbf{Product: #1}
+    \textbf{Product: #1} \IfValueT{#2}{ \textit{\small[#2]}}
+    
+    \IfValueT{#2}{ 
+        \vspace{2pt}
+        #3
+        \vspace{4pt}
+    }
     \begin{itemize}
 }
 
@@ -189,3 +196,8 @@
 
 % Remove paragraph indentation
 \setlength{\parindent}{0pt}
+
+% Footer
+\fancyfoot[L]{\today}
+\fancyfoot[C]{\@emailaddress}
+\fancyfoot[R]{\thepage\ of \pageref{LastPage}}
