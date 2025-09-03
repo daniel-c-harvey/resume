@@ -20,20 +20,21 @@
 \RequirePackage{geometry}
 \RequirePackage{xparse}
 \RequirePackage{lastpage}
+\RequirePackage{paracol}
 
 % Page setup
 \geometry{
     left=0.5in,
     right=0.5in,
     top=0.5in,
-    bottom=0.5in
+    bottom=0.62in
 }
 
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
-\setlength{\footskip}{16pt}
+\setlength{\footskip}{20pt}
 
 % Colors
 \definecolor{primary}{RGB}{0, 102, 204}
@@ -77,6 +78,8 @@
 
 % Utility commands
 \newcommand{\link}[2]{\href{#1}{\color{primary}#2}}
+\newcommand{\emaillink}{\href{mailto:\@emailaddress}{\@emailaddress}}
+\newcommand{\githublink}{\href{https://github.com/\@githubhandle}{https://github.com/\@githubhandle}}
 \newcommand{\githubrepo}[1]{\href{https://github.com/\@githubhandle/#1}{\faGithub\ \texttt{#1}}}
 
 % Skills section
@@ -187,58 +190,53 @@
     \vspace{4pt}
 }
 
-% Fields of study in columns
-\newcommand{\studylist}[2][\numexpr2\relax]{
-    \begin{minipage}[t]{\textwidth}
-    \newcounter{colnum}
-    \setcounter{colnum}{#1}
-    \newlength{\colwidth}
-    \setlength{\colwidth}{\dimexpr(\textwidth-\numexpr\value{colnum}-1\relax\tabcolsep*2)/\value{colnum}\relax}
-    \begin{tabular*}{\textwidth}[t]{*{#1}{@{}p{\colwidth}@{}}}
-    #2
-    \end{tabular*}
-    \end{minipage}
-}
+% % Fields of study in columns
+% \newcommand{\studylist}[2][\numexpr2\relax]{
+%     \begin{minipage}[t]{\textwidth}
+%     \newcounter{colnum}
+%     \setcounter{colnum}{#1}
+%     \newlength{\colwidth}
+%     \setlength{\colwidth}{\dimexpr(\textwidth-\numexpr\value{colnum}-1\relax\tabcolsep*2)/\value{colnum}\relax}
+%     \begin{tabular*}{\textwidth}[t]{*{#1}{@{}p{\colwidth}@{}}}
+%     #2
+%     \end{tabular*}
+%     \end{minipage}
+% }
 
 \newcommand{\study}[1]{
     \begin{center}
         \textbf{#1}
+        \vspace{4pt}
     \end{center}
     \vspace{-8pt}
     \begin{itemize}[leftmargin=0.25in, rightmargin=0.25in, nosep, itemsep=1pt]
 }
 
 \newcommand{\course}[2]{
-    \item{{\small\textbf{#1}:} {\footnotesize#2}}
+    \item{\textbf{#1}: #2}
 }
 
 \newcommand{\studyend}{
     \end{itemize}
 }
 
-% Two-column convenience commands
+% Two-column convenience commands using paracol for page breaks
 \newcommand{\twostudylist}[2]{
-    \begin{minipage}[t]{0.45\textwidth}
+    \begin{paracol}{2}
     #1
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.45\textwidth}
+    \switchcolumn
     #2
-    \end{minipage}
+    \end{paracol}
 }
 
 \newcommand{\threestudylist}[3]{
-    \begin{minipage}[t]{0.28\textwidth}
+    \begin{multicols}{3}
     #1
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.28\textwidth}
+    \columnbreak
     #2
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.28\textwidth}
+    \columnbreak
     #3
-    \end{minipage}
+    \end{multicols}
 }
 
 % Remove paragraph indentation
@@ -246,5 +244,5 @@
 
 % Footer
 \fancyfoot[L]{\today}
-\fancyfoot[C]{\@emailaddress}
+\fancyfoot[C]{\emaillink\break\githublink}
 \fancyfoot[R]{\thepage\ of \pageref{LastPage}}
