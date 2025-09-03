@@ -75,6 +75,10 @@
     \vspace{-16pt}
 }
 
+% Utility commands
+\newcommand{\link}[2]{\href{#1}{\color{primary}#2}}
+\newcommand{\githubrepo}[1]{\href{https://github.com/\@githubhandle/#1}{\faGithub\ \texttt{#1}}}
+
 % Skills section
 \newcommand{\skillsheader}[1]{
     \section{#1}
@@ -113,7 +117,7 @@
     \vspace{4pt}
     \textbf{Product: #1} \IfValueT{#2}{ \textit{\small[#2]}}
     
-    \IfValueT{#2}{ 
+    \IfValueT{#3}{ 
         \vspace{2pt}
         #3
         \vspace{4pt}
@@ -122,7 +126,12 @@
 }
 
 \newcommand{\achievement}[1]{
-    \item #1
+    \item \achievementformatfirstword#1\relax
+}
+
+% Helper command to make first word bold
+\def\achievementformatfirstword#1 #2\relax{%
+    \textbf{#1} #2%
 }
 
 \newcommand{\productend}{
@@ -136,14 +145,12 @@
     \vspace{-2pt}
 }
 
-\newcommand{\project}[3]{
+\NewDocumentCommand{\project}{m m o o}{
     \vspace{8pt}
-    \textbf{#1} \textbar\ \textit{#2}
-    \ifx&#3&%
-    \else
-        \ \textbar\ \href{#3}{\color{primary}#3}
-    \fi
-    \vspace{-1pt}
+    \textbf{#1} \textbar\ \textit{#2}%
+    \IfValueT{#3}{\ \textbar\ \githubrepo{#3}\IfValueT{#4}{\ \textbar\ }}%
+    \IfValueT{#4}{\link{#4}{#4}}
+    \vspace{2pt}
     \begin{itemize}
 }
 
@@ -175,24 +182,64 @@
 
 % Coursework subsection
 \newcommand{\courseworkheader}[1]{
-    \vspace{6pt}
-    {\large\textbf{#1}}
-    \vspace{2pt}
-    \begin{itemize}[leftmargin=0.15in, label={}]
+    \vspace{8pt}
+    \textbf{#1}
+    \vspace{4pt}
+}
+
+% Fields of study in columns
+\newcommand{\studylist}[2][\numexpr2\relax]{
+    \begin{minipage}[t]{\textwidth}
+    \newcounter{colnum}
+    \setcounter{colnum}{#1}
+    \newlength{\colwidth}
+    \setlength{\colwidth}{\dimexpr(\textwidth-\numexpr\value{colnum}-1\relax\tabcolsep*2)/\value{colnum}\relax}
+    \begin{tabular*}{\textwidth}[t]{*{#1}{@{}p{\colwidth}@{}}}
+    #2
+    \end{tabular*}
+    \end{minipage}
+}
+
+\newcommand{\study}[1]{
+    \begin{center}
+        \textbf{#1}
+    \end{center}
+    \vspace{-8pt}
+    \begin{itemize}[leftmargin=0.25in, rightmargin=0.25in, nosep, itemsep=1pt]
 }
 
 \newcommand{\course}[2]{
-    \item{\textbf{#1}: {\small#2}}
+    \item{{\small\textbf{#1}:} {\footnotesize#2}}
 }
 
-\newcommand{\courseworkfooter}{
+\newcommand{\studyend}{
     \end{itemize}
-    \vspace{2pt}
 }
 
-% Utility commands
-\newcommand{\link}[2]{\href{#1}{\color{primary}#2}}
-\newcommand{\githubrepo}[1]{\texttt{#1}}
+% Two-column convenience commands
+\newcommand{\twostudylist}[2]{
+    \begin{minipage}[t]{0.45\textwidth}
+    #1
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+    #2
+    \end{minipage}
+}
+
+\newcommand{\threestudylist}[3]{
+    \begin{minipage}[t]{0.28\textwidth}
+    #1
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.28\textwidth}
+    #2
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.28\textwidth}
+    #3
+    \end{minipage}
+}
 
 % Remove paragraph indentation
 \setlength{\parindent}{0pt}
