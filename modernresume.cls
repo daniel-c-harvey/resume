@@ -190,29 +190,18 @@
     \vspace{4pt}
 }
 
-% % Fields of study in columns
-% \newcommand{\studylist}[2][\numexpr2\relax]{
-%     \begin{minipage}[t]{\textwidth}
-%     \newcounter{colnum}
-%     \setcounter{colnum}{#1}
-%     \newlength{\colwidth}
-%     \setlength{\colwidth}{\dimexpr(\textwidth-\numexpr\value{colnum}-1\relax\tabcolsep*2)/\value{colnum}\relax}
-%     \begin{tabular*}{\textwidth}[t]{*{#1}{@{}p{\colwidth}@{}}}
-%     #2
-%     \end{tabular*}
-%     \end{minipage}
-% }
-
 \newcommand{\study}[1]{
-    \begin{center}
-        \textbf{#1}
-        \vspace{4pt}
-    \end{center}
-    \vspace{-8pt}
-    \begin{itemize}[leftmargin=0.25in, rightmargin=0.25in, nosep, itemsep=1pt]
+    \vspace{4pt}
+    \textbf{#1}
+    \vspace{4pt}
+    \begin{itemize}[leftmargin=0.2in, rightmargin=0in, nosep, itemsep=1pt]
 }
 
-\newcommand{\course}[2]{
+\newcommand{\course}[1]{
+    \item{#1}
+}
+
+\newcommand{\coursed}[2]{
     \item{\textbf{#1}: #2}
 }
 

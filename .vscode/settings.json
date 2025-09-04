@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "achievementformatfirstword",
         "AISC",
         "Architecting",
         "Avalara",
@@ -8,6 +9,7 @@
         "Blazor",
         "CMSIS",
         "colnum",
+        "columnbreak",
         "colwidth",
         "combinational",
         "courseworkheader",
@@ -56,6 +58,7 @@
         "microcontrollers",
         "minipage",
         "modernresume",
+        "multicols",
         "newcommand",
         "newcounter",
         "newlength",
@@ -64,6 +67,7 @@
         "OWLDJFX",
         "pageref",
         "pagestyle",
+        "paracol",
         "parindent",
         "parsep",
         "phonenumber",
@@ -86,6 +90,7 @@
         "studyend",
         "studylist",
         "Summerville",
+        "switchcolumn",
         "tabcolsep",
         "tabularx",
         "textbar",
