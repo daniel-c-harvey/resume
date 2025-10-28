@@ -102,16 +102,16 @@
     \section{#1}
 }
 
-\newcommand{\role}[6]{
+\newcommand{\role}[5]{
     \vspace{4pt}
     \begin{tabular*}{\textwidth}[t]{@{}l@{\extracolsep{\fill}}r@{}}
-        {\large\textbf{#1}}\IfValueT{#2}{ \textit{\small[#2]}} & #3 \\
-        \textit{#4} & \textit{#5} \\
+        {\large\textbf{#1}} & #2 \\
+        \textit{#3} & \textit{#4} \\
     \end{tabular*}
 
-    \IfValueT{#6}{
+    \IfValueT{#5}{
         \vspace{4pt}
-        \textbf{Technologies:} #6
+        \textbf{Technologies:} #5
     }
     \vspace{4pt}
 }
