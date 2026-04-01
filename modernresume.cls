@@ -51,27 +51,33 @@
 
 % Personal information storage
 \newcommand{\@fullname}{}
-\newcommand{\@jobtitle}{}
+\let\@jobtitle\@empty
 \newcommand{\@phonenumber}{}
 \newcommand{\@emailaddress}{}
-\newcommand{\@githubhandle}{}
+\let\@githubhandle\@empty
 
 % Commands to set personal information
 \newcommand{\fullname}[1]{\renewcommand{\@fullname}{#1}}
-\newcommand{\jobtitle}[1]{\renewcommand{\@jobtitle}{#1}}
+\newcommand{\jobtitle}[1]{\def\@jobtitle{#1}}
 \newcommand{\phone}[1]{\renewcommand{\@phonenumber}{#1}}
 \newcommand{\email}[1]{\renewcommand{\@emailaddress}{#1}}
-\newcommand{\github}[1]{\renewcommand{\@githubhandle}{#1}}
+\newcommand{\github}[1]{\def\@githubhandle{#1}}
 
 % Header generation
 \newcommand{\makeheader}{
     \begin{center}
-        {\Huge \bfseries \@fullname} \\ \vspace{4pt}
-        {\Large \@jobtitle} \\ \vspace{8pt}
-        \small 
-        \raisebox{-0.1\height}\faPhone\ \@phonenumber ~ 
-        \href{mailto:\@emailaddress}{\raisebox{-0.2\height}\faEnvelope\ \@emailaddress} ~ 
-        \href{https://github.com/\@githubhandle}{\raisebox{-0.2\height}\faGithub\ \@githubhandle} ~
+        {\Huge \bfseries \@fullname}
+        \ifx\@jobtitle\@empty
+            \par\vspace{8pt}
+        \else
+            \\ \vspace{4pt}{\Large \@jobtitle} \\ \vspace{8pt}
+        \fi
+        \small
+        \raisebox{-0.1\height}\faPhone\ \@phonenumber ~
+        \href{mailto:\@emailaddress}{\raisebox{-0.2\height}\faEnvelope\ \@emailaddress} ~
+        \ifx\@githubhandle\@empty\else
+            \href{https://github.com/\@githubhandle}{\raisebox{-0.2\height}\faGithub\ \@githubhandle} ~
+        \fi
     \end{center}
     \vspace{-16pt}
 }
@@ -233,5 +239,5 @@
 
 % Footer
 \fancyfoot[L]{\today}
-\fancyfoot[C]{\emaillink\break\githublink}
+\fancyfoot[C]{\emaillink\ifx\@githubhandle\@empty\else\break\githublink\fi}
 \fancyfoot[R]{\thepage\ of \pageref{LastPage}}
