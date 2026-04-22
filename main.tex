@@ -14,12 +14,12 @@
 
 % Technical Skills
 \skillsheader{Technical Skills Summary}
-    \skillsitem{Programming Languages \& ISAs}{C\#, VB.NET, C++, Java, TypeScript/JavaScript, Transact-SQL, C, HTML5, CSS3, PHP, Python, Lua, LaTeX, Matlab, Mermaid, Verilog, VHDL, ARM Assembly (Thumb-2), RISC-V}
+    \skillsitem{Programming Languages \& ISAs}{C\#, VB.NET, C++, Python, Java, TypeScript/JavaScript, Transact-SQL, C, HTML5, CSS3, PHP, Lua, LaTeX, Matlab, Mermaid, Verilog, VHDL, ARM Assembly (Thumb-2), RISC-V}
     \skillsitem{Frameworks \& Libraries}{.NET Core, .NET Framework, ASP.NET Core, Blazor, MudBlazor UI, MAUI, WPF, WinForms, NUnit, Node.js, React, Next.js, Entity Framework Core, Dapper, ADO.NET, JUCE}
     \skillsitem{DBMSs}{MS SQL Server, PostgreSQL, MongoDB, MySQL, MariaDB, SQLite}
     \skillsitem{Cloud \& DevOps}{Azure DevOps, Team Foundation (TFS), BitBucket, Azure Pipelines, GitHub Actions, Digital Ocean Droplets, AWS EC2, Git, TFVC}
     \skillsitem{Development Methodologies}{Agile/Scrum SDLC, SOLID Principles, Service-Oriented Architecture, Test-Driven Development}
-    \skillsitem{Tools \& Environments}{Visual Studio, Rider, DataGrip, VS Code, WebStorm, DataGrip, Cursor, SQL Server Management Studio, CLion, PhpStorm, IntelliJ, Eclipse, Postman/Insomnia, Bash, Vim}
+    \skillsitem{Tools \& Environments}{Visual Studio, Rider, DataGrip, VS Code, PyCharm, WebStorm, DataGrip, Cursor, SQL Server Management Studio, CLion, PhpStorm, IntelliJ, Eclipse, Postman/Insomnia, Bash, Vim, Claude Code}
     \skillsitem{Platforms \& Operating Systems}{Windows, Linux, CMSIS-RTOS, ARM Cortex M3 \& M4 \& M7, Espressif ESP32, Microchip PIC32, Freescale HCS12, Arduino}
     \skillsitem{Core Competencies}{Full-Stack Application Development, Cross-Functional Collaboration, Enterprise Application \& System Architecture, Database Design, API Development, User Interface Design, Cloud \& Local Solutions, Project Leadership, Technical Mentoring, Embedded Systems}
 \skillsfooter
@@ -27,13 +27,13 @@
 % Professional Experience
 \experienceheader{Professional Experience}
 
-\role{Application Architect}{October 2024 -- Present}{Cerebellum Softworks (Self-Employed)}{Summerville, SC}{.NET 10/9/8, C\#, Entity Framework Core, ASP.NET Core with Identity, Node.js, TypeScript, Blazor Server \& Web Assembly, MudBlazor, PostgreSQL, SQLite, Google Cloud, Azure, Digital Ocean Droplets, Rider, DataGrip, Visual Studio, VS Code, Git, NUnit, Cursor}
+\role{Application Architect}{October 2024 -- Present}{Cerebellum Softworks (Self-Employed)}{}{.NET 10/9/8, C\#, Entity Framework Core, ASP.NET Core with Identity, Node.js, TypeScript, Blazor Server \& Web Assembly, MudBlazor, PostgreSQL, SQLite, Google Cloud, Azure, Digital Ocean Droplets, Rider, DataGrip, Visual Studio, VS Code, Git, NUnit, Claude Code, Cursor}
 
 \product{Babelfish Real-Time Captioning \& Translation}{Maintenance \& Enhancement Stage}{Implemented and operated real-time captioning and translation application for live technical conference events, utilizing Google Cloud gRPC Services, ASP.NET Core, and Blazor Server to deliver seamless multilingual support and accessibility features for diverse international audiences.}
    \achievement{Interviewed organization leadership to gather requirements and design features, translating business needs into technical solutions}
    \achievement{Implemented real-time captioning by implementing efficient data streaming techniques and RT pipeline processing, yielding a total processing latency of <2 seconds from speech input to caption display}
    \achievement{Developed user-friendly interface with MudBlazor components, ensuring responsive monitoring and control for the system operator and clean presentation for event  attendees}
-   \achievement{Operated the system during the four-day TCB Council Fall 2025 Workshop, successfully providing real-time captioning and translation in English, Japanese, Korean, and Chinese for over 28 hours of technical sessions and panel with negligible latency and high domain-language accuracy}
+   \achievement{Operated the system across two TCB Council Workshops --- the four-day Fall 2025 event (English, Japanese, Korean, and Chinese; 28+ hours of technical sessions) and the three-day April 2026 event (scaled to 14 simultaneous languages over 21 hours, delivering 256,000+ translations at a 99.93\% success rate with $\sim$1-second end-to-end latency and zero downtime, outages, or interruptions)}
    \achievement{Crafted professional dynamics processing algorithms and controls to enhance audio clarity for speech recognition, including noise gating, upward expansion, compression, look-ahead limiting, and gain trimming}
 \productend
 
@@ -92,11 +92,11 @@
     \achievement{Implemented adaptive saturation algorithms using custom tanh approximations with tunable threshold and makeup gain parameters, providing musical harmonic enhancement while maintaining signal integrity through feedback-compensated processing}
 \projectend
 
-\project{Accounts Receivables Web Dashboard}{React, Next.js, PostgreSQL, Node.js, Authentication \& Authorization, RESTful APIs}[acme-dashboard][https://acme.snailbird.net]
-    \achievement{Implemented full-stack TypeScript application following Vercel's Next.js App Router curriculum, extending base tutorial with production-ready PostgreSQL integration and environment variable validation}
-    \achievement{Developed custom API routes and database query abstraction layer using direct SQL with the postgres library, enabling type-safe data operations beyond tutorial scope}
-    \achievement{Engineered automated deployment pipeline with SSH-based remote building, selective file copying, and environment-specific configuration management for production server deployment}
-    \achievement{Enhanced tutorial foundation with custom development tooling including test pages for component validation and advanced server configuration for production scalability}
+\project{BreakChop Step-Sequenced Audio Effect Plugin}{C++20, JUCE 8, VST3, CMake, juce::dsp, OpenGL, Real-Time Audio Processing, Lock-Free Concurrency, APVTS, DAW Transport Sync}[break\_chop]
+    \achievement{Architected a tempo-locked signal pipeline (Pre-FX $\rightarrow$ Capture $\rightarrow$ Step FX $\rightarrow$ Crossfade $\rightarrow$ Post-FX $\rightarrow$ Dry/Wet) for a 32-step reorderable sequencer supporting up to four effects per step plus independent global Pre/Post FX chains, delivered as a cross-platform JUCE 8 VST3 and standalone plugin with OpenGL-rendered effect and waveform visualizers}
+    \achievement{Engineered strict audio/message-thread separation using \texttt{std::atomic} UI feedback and a resolved-POD snapshot pattern for runtime macro configuration, eliminating audio-thread allocation and reference-counted types on the real-time path while tolerating at most a single block of stale modulation values}
+    \achievement{Crafted a stutter effect with exponentially-spaced repeat slots (geometric-sum normalized so accelerando/decelerando preserves total segment length), fractional-interpolation pitch shifting ramped across repeat index, in-place reverse via post-capture buffer flip, quadratic attack/release envelope with floor compensation and per-slot decay, and equal-power stereo spread that alternates L/R with intensity growing per repeat}
+    \achievement{Designed an O(1)-indexed FX topology service that links same-type effects across steps via \texttt{shared\_ptr} parameter pooling, combined with a macro modulation engine supporting function-generator shapes (division, skew, smoothing, phase, bias) routed to global, pooled, or per-slot destinations, with a strategy-based gate pattern library (Uniform, Syncopated, Dotted, Triplet) open for extension}
 \projectend
 
 \project{HTTP Media Server}{Node.js, Express.js, Linux ext4 filesystem, Digital Ocean Droplet}[snailbird-content]
